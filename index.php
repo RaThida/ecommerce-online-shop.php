@@ -1,209 +1,133 @@
-<?php include('layouts/header.php')?>
 
 
-    <!--Home-->
-   <section id="home">
-    <div class="container" >
-      <h5>NEW ARRIVALS</h5>
-      <h1><span>Best Prices</span> This season  </h1>
-      <p>Eshop offers the best products for you</p>
-      <button>Shop Now</button>
-      
-    </div>
-  </section>
-  <!--Brabd-->
-  <section id="brand" class="container">
-    <div class="row">
-      <img class="img-fluid col-lg-3 col-md-6 col-sm-12" src="assets/imgs/FILA.png"/>
-      <img class="img-fluid col-lg-3 col-md-6 col-sm-12" src="assets/imgs/g-shock-casio.png"/>
-      <img class="img-fluid col-lg-3 col-md-6 col-sm-12" src="assets/imgs/converse.png"/>
-      <img class="img-fluid col-lg-3 col-md-6 col-sm-12" src="assets/imgs/chanel.png"/>
+<?php include('header.php');?>
+<?php session_start();?>
 
-  
-    </div>
-  </section>
-  <!--new-->
-  <section id="new" class="w-100">
-    <div class="row p-0 m-0">
-      <!--one-->
-      <div class="one col-lg-4 col-md-12 col-sm-12 p-0">
-        <img class="img-fluid" src="assets/imgs/3.jpg">
-        <div class="details">
-          <h2> extreamely awesome shoes</h2>
-          <button class="text-uppercase">shop now</button>
-        </div>
-      </div>
-      <!--two-->
-      <div class="one col-lg-4 col-md-12 col-sm-12 p-0">
-        <img class="img-fluid" src="assets/imgs/3.jpeg">
-        <div class="details">
-          <h2> bagpag</h2>
-          <button class="text-uppercase">shop now</button>
-        </div>
-      </div>
-      <!--three-->
-      <div class="one col-lg-4 col-md-12 col-sm-12 p-0">
-        <img class="img-fluid" src="assets/imgs/smart-watch.jpg">
-        <div class="details">
-          <h2> new style of watch</h2>
-          <button class="text-uppercase">shop now</button>
-        </div>
-      </div>
-        <!--four-->
-        <div class="one col-lg-4 col-md-12 col-sm-12 p-0">
-          <img class="img-fluid" src="assets/imgs/summeroutfit.webp">
-          <div class="details">
-            <h2> best for summer season</h2>
-            <button class="text-uppercase">shop now</button>
-          </div>
-        </div>
-        <!--five-->
-        <div class="one col-lg-4 col-md-12 col-sm-12 p-0">
-          <img class="img-fluid" src="assets/imgs/dress.jpg">
-          <div class="details">
-            <h2> cute dress</h2>
-            <button class="text-uppercase">shop now</button>
-          </div>
-        </div>
-    </div>
-  </section>
-  <!--featured-->
-  <section id="featured" class="my-5 pb-5">
-    <div class="container text-center my-5 pb-5 ">
-      <h3>our featured</h3>
-      <hr class="mx-auto">
-      <p>Here our products featured</p>
-    </div>
-    <div class="row mx-auto container-fluid">
-    <?php include('server/get_featured_product.php');?>
-    <?php while($row= $featured_products->fetch_assoc()){ ?>  
+<?php 
+  if(!isset($_SESSION['admin_logged_in'])){
+    header('location: login.php');
+    exit;
+  }
+?>
 
-      <div class="product text-center col-lg-3 col-md-4 col-sm-12">
-        <img class="img-fluid mb-3" src="assets/imgs/<?php echo $row['product_image'];?>">
-        <div class="star">
-          <i class="fas fa-star"></i>
-          <i class="fas fa-star"></i>
-          <i class="fas fa-star"></i>
-          <i class="fas fa-star"></i>
-          <i class="fas fa-star"></i>
-        </div>
-        <h5 class="p-name"><?php echo $row['product_name']; ?></h5>
-        <h4 class="p-price">$<?php echo $row['product_price']; ?></h4>
-        <a href="single_product.php?product_id=<?php echo $row['product_id'];?>"><button class="buy-btn">buy now</button></a>
-      </div>
+<?php
 
-     
-
-    <?php } ?>
-    </div>
-  </section>
-  <!--banner-->
-  <section id="banner" class="my-5 py-5">
-    <div class="container">
-      <h4>MID SEASON'S SALE</h4>
-      <h1>Autumn collection<br> up to 15% off</h1>
-      <button class="text-uppercase">shop now</button>
-    </div>
-  </section>
-  <!--coats-->
-  <section id="coats" class="my-5 ">
-    <div class="container text-center my-5 pb-5 ">
-      <h3>Dress & Coats</h3>
-      <hr class="mx-auto">
-      <p>Here our products1</p>
-    </div>
-    <div class="row mx-auto container-fluid">
-
-      <?php include('server/get_coat.php');?>
-
-      <?php while($row=$coats_products->fetch_assoc()){ ?>
-
-        <div class="product col-lg-3 col-md-4 col-sm-12">
-          <img class="img-fluid mb-3 coat-image" src="assets/imgs/<?php echo $row['product_image']; ?>">
-          <div class="star">
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star"></i>
-          </div>
-          <h5 class="p-name"><?php echo $row['product_name']; ?></h5>
-          <h4 class="p-price">$<?php echo $row['product_price']; ?></h4>
-          <button class="buy-btn">buy now</button>
-        </div>
-      
-      <?php } ?>
-     
-
-      
-
-      
-    </div>
-  </section>
-
-  <!--shoes-->
-  <section id="shoes" class="my-5 ">
-    <div class="container text-center my-5 pb-5 ">
-      <h3>Shoes</h3>
-      <hr class="mx-auto">
-      <p>fashionable shoes for who like the fashion</p>
-    </div>
-    
-        <div class="row mx-auto container-fluid">
-        <?php include('server/get_shoes.php');?>
-          <?php while($row= $shoes->fetch_assoc()){ ?>
-            <div class="product text-center col-lg-3 col-md-4 col-sm-12">
-              <img class="img-fluid mb-3" src="assets/imgs/<?php echo $row['product_image'];?>">
-                <div class="star">
-                  <i class="fas fa-star"></i>
-                  <i class="fas fa-star"></i>
-                  <i class="fas fa-star"></i>
-                  <i class="fas fa-star"></i>
-                  <i class="fas fa-star"></i>
-                </div>
-                <h5 class="p-name"><?php echo $row['product_name'];?></h5>
-                <h4 class="p-price">$<?php echo $row['product_price'];?></h4>
-                <a href="single_product.php?product_id=<?php echo $row['product_id'];?>"><button class="buy-btn">buy now</button></a>
-            </div>
-          <?php }?>
-        </div>
-
-    
-    
-      
-
-  
-  </section>
-
-  <!--watches-->
-  <section id="watches" class="my-5 ">
-    <div class="container text-center my-5 pb-5 ">
-      <h3>Watches</h3>
-      <hr class="mx-auto">
-      <p>here is what you wanna see</p>
-    </div>
-
-   
-    <div class="row mx-auto container-fluid">
-    <?php include('server/get_watch.php');?>
-    <?php while($row= $watches->fetch_assoc()){ ?>
-      <div class="product text-center col-lg-3 col-md-4 col-sm-12">
-      <img class="img-fluid mb-3 wateches-image" src="assets/imgs/<?php echo $row['product_image'];?>">
-        <div class="star">
-          <i class="fas fa-star"></i>
-          <i class="fas fa-star"></i>
-          <i class="fas fa-star"></i>
-          <i class="fas fa-star"></i>
-          <i class="fas fa-star"></i>
-        </div>
-        <h5 class="p-name"><?php echo $row['product_name'];?></h5>
-        <h4 class="p-price">$<?php echo $row['product_price'];?></h4>
-        <a href="single_product.php?product_id=<?php echo $row['product_id'];?>"><button class="buy-btn">buy now</button></a>
-        <?php } ?>
-      </div>
-
-
-   
-  </section>
+    //1. determine page no
+    if(isset($_GET['page_no']) && $_GET['page_no'] != ""){
+      $page_no = $_GET['page_no'];
+  }else{
+      $page_no = 1;
+  }
+  //2. return number of products
+  $stmt = $conn->prepare("SELECT COUNT(*) As total_records FROM orders");
+  $stmt -> execute();
+  $stmt ->bind_result($total_records);
+  $stmt ->store_result();
+  $stmt ->fetch();
  
-  <?php include('layouts/footer.php')?>
+  //3. products per page
+  $total_records_per_page = 6;
+  $offset = ($page_no-1) * $total_records_per_page;
+  $previous_page = $page_no - 1;
+  $next_page = $page_no + 1;
+  $adjacents  = "2";
+  $total_no_of_pages = ceil($total_records/$total_records_per_page);
+
+
+
+  //4. get all products
+  $stmt2 = $conn->prepare("SELECT * FROM orders LIMIT $offset,$total_records_per_page");
+  $stmt2 ->execute();
+  $orders = $stmt2->get_result();
+
+
+ 
+?>
+<?php include('sidemenu.php'); ?>
+<div class="container-fluid">
+  <div class="row" style="min-height: 100%">
+  <br><br>
+
+<main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+      <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+        <h1 class="h2">Dashboard</h1>
+      </div>
+<br><br>
+      <div class="table-responsive">
+        <h2>Orders</h2>
+        <?php if(isset($_GET['order_update'])){ ?>
+        <p class="text-center" style="color:green;"><?php echo $_GET['order_update'];?></p>
+      <?php }?>
+
+      <?php if(isset($_GET['failed_update'])){ ?>
+        <p class="text-center" style="color:red;"><?php echo $_GET['failed_update'];?></p>
+      <?php }?>
+<!--       
+      <?php //if(isset($_GET['deleted_successfully'])){ ?>
+        <p class="text-center" style="color:green;"><?php //echo $_GET['deleted_successfully'];?></p>
+      <?php //}?>
+      
+
+      <?php //if(isset($_GET['deleted_failed'])){ ?>
+        <p class="text-center" style="color:red;"><?php //echo $_GET['deleted_failed'];?></p>
+      <?php//}?> -->
+      
+        <table class="table table-striped table-sm">
+          <thead>
+            <tr>
+              <th scope="col">order id</th>
+              <th scope="col">order status</th>
+              <th scope="col">user id</th>
+              <th scope="col">user phone</th>
+              <th scope="col">order date</th>
+              <th scope="col">user address</th>
+              <th scope="col">edit</th>
+              <th scope="col">delete</th>
+          </thead>
+          <tbody>
+          <?php foreach($orders as $order){?>
+            <tr>
+              <td><?php echo $order['order_id'];?></td>
+              <td><?php echo $order['order_status'];?></td>
+              <td><?php echo $order['user_id'];?></td>
+              <td><?php echo $order['user_phone'];?></td>
+              <td><?php echo $order['order_date'];?></td>
+              <td><?php echo $order['user_address'];?></td>
+              <td><a class="btn btn-primary" href="edit_order.php?order_id=<?php echo $order['order_id'];?>">Edit</a></td>
+              <td><a class="btn btn-danger">delete</a></td>
+            </tr>
+          <?php }?>
+           
+          </tbody>
+        </table>
+        <div aria-label="Page navigation example" class="mx-auto">
+                    <ul class="pagination mt-5 mx-auto">
+                        <li class="page-item <?php if($page_no<=1){echo 'disabled';}?> ">
+                            <a class="page-link" href="<?php if($page_no<=1){echo '#';}else{echo "?page_no=".($page_no-1);} ?>" >previous</a>
+                        </li>
+
+                        <li class="page-item"><a class="page-link" href="?page_no=1">1</a></li>
+                        <li class="page-item"><a class="page-link" href="?page_no=2">2</a></li>
+                        <?php if($page_no>=3){ ?>
+                            <li class="page-item"><a class="page-link" href="#">...</a></li>
+                            <li class="page-item"><a class="page-link" href="<?php echo"?page_no=".$page_no; ?>"><?php echo $page_no; ?></a></li>
+                        <?php }?>
+                        <li class="page-item <?php if($page_no>= $total_no_of_pages){echo 'disabled';}?>">
+                            <a class="page-link" href="<?php if($page_no >= $total_no_of_pages ){echo '#';} else{ echo "?page_no=".($page_no+1);}?>">next</a>
+                        </li>
+
+                    </ul>
+          </div>
+      </div>
+     
+    </main>
+  </div>
+</div>
+
+
+  
+<script src="/docs/5.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.js" integrity="sha384-uO3SXW5IuS1ZpFPKugNNWqTZRRglnUJK6UAZ/gxOX80nxEkN9NcGZTftn6RzhGWE" crossorigin="anonymous"></script><script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js" integrity="sha384-zNy6FEbO50N+Cg5wap8IKA4M/ZnLJgzc6w2NqACZaK0u0FXfOWRRJOnQtpZun8ha" crossorigin="anonymous"></script><script src="dashboard.js"></script>
+</body>
+</html>
