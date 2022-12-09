@@ -1,0 +1,60 @@
+html,
+body {
+  height: 100%;
+}
+
+body {
+  display: flex;
+  align-items: center;
+  padding-top: 40px;
+  padding-bottom: 40px;
+  background-color: #f5f5f5;
+}
+h1{
+	align-items: center;
+	text-align:center;
+	font-size: 2.5rem;
+	font-weight:1000;
+	color:darkblue;
+}
+.form-control {
+	display: flex;
+	align-items: center;
+    margin:15px auto;
+	
+	padding:10px;
+   	border-radius: 5px;
+}
+
+
+
+.form-signin {
+	background-color:rgb(200, 200, 201);
+	border-radius: 5px;
+    color:darkblue;
+	text-align: center;
+	font-size: 1.2rem;
+	font-weight:400;
+  	width: 100%;
+  	max-width: 400px;
+  	padding: 15px;
+  	margin:15px auto;
+}
+
+.form-signin .checkbox {
+  font-weight: 400;
+}
+#login-btn{
+	display: flex;
+	width:25%;
+    margin: 5px auto;
+
+	background-color:rgb(209, 209, 209);
+    color:rgb(45, 43, 43);
+	padding:10px;
+   	border-radius: 5px;
+}
+#login-btn:hover{
+	background-color:rgb(152, 142, 142);
+}
+
